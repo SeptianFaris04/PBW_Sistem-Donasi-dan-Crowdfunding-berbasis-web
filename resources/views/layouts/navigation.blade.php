@@ -21,9 +21,6 @@
                     <x-nav-link :href="route('urundana.index')" :active="request()->routeIs('urundana.index')">
                         {{ __('Galang Dana') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('merchandise.index')" :active="request()->routeIs('merchandise.index')">
-                        {{ __('Merchandise') }}
-                    </x-nav-link>
                     @auth
                     @if (auth()->user()->hasRole('admin'))
                         <x-nav-link>
