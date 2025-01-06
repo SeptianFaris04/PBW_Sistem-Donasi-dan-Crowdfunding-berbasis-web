@@ -38,5 +38,13 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('hapus-donasi', function (User $user, Donasi $donasi){
             return $user->id === $donasi->user_id;
         });
+
+        Gate::define('edit-urundana', function (User $user, Donasi $donasi) {
+            return $user->id === $donasi->user_id;
+        });
+
+        Gate::define('hapus-urundana', function (User $user, Donasi $donasi){
+            return $user->id === $donasi->user_id;
+        });
     }
 }

@@ -81,13 +81,13 @@ class SocialiteController extends Controller
 
         auth('web')->login($userFromDB);
         session()->regenerate();
-        return redirect('home');
+        return redirect('/');
     }
 
     public function logout(Request $request){
         auth('web')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('home');
+        return redirect('/');
     }
 }

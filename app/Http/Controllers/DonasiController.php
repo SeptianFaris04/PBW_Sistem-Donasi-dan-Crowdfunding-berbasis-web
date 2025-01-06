@@ -3,18 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Donasi;
+use App\Models\Payment;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controllers;
-use App\Http\Requests\DonasiRequest;
+use Illuminate\Session\Store;
 // use Illuminate\Routing\Controllers\HasMiddleware;
 // use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Routing\Controllers;
+use App\Http\Requests\DonasiRequest;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Auth\Middleware\Authenticate;
-use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
-use Illuminate\Session\Store;
+use Illuminate\Routing\Controllers\HasMiddleware;
 
 class DonasiController extends Controller
 {
@@ -60,9 +61,14 @@ class DonasiController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Donasi $donasi)
+    public function show($slug_donasis)
     {
-        //
+        $donasi = Donasi::where('slug_donasis', $slug_donasis)->first();
+        $payment = Payment::where('donasi_id', $donasi->id)->get();
+        return view('donasi.show', [
+            'donasi' => $donasi,
+            'payment' => $payment
+        ]);
     }
 
     /**
@@ -73,7 +79,6 @@ class DonasiController extends Controller
         // tidak bisa diedit donasi sesuai dengan user yang membuat donasi
         // abort_if($request->user()->isNot($donasi->user), 401);
         Gate::authorize('edit-donasi', $donasi);
-        Gate::authorize('hapus-donasi', $donasi);
         $categories = Category::all();
         $donasi->load(['category', 'user']);
         return view('donasi.edit', [

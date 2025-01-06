@@ -26,6 +26,9 @@
                 <a class="hover:underline" href="/donasi/{{ $donasi->slug_donasis }}">{{ $donasi->name }}</a>
             </h2>
             <p class="mb-5 font-light text-gray-500 dark:text-gray-400">{{ Str::limit($donasi->description, 150) }}</p>
+            <div class="flex justify-end text-end mb-4">
+                <a class="bg-primary-500 text-white border rounded-md p-2" href="/payment/donasi/create/{{ $donasi->id }}">Donate {{ $donasi->name }} </a>
+            </div>
             <div class="flex justify-between items-center mt-auto">
                 <div class="flex items-center space-x-4">
                     <a class="hover:underline" href="/users/{{ $donasi->user->username }}">

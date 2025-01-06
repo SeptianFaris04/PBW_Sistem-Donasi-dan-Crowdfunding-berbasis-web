@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Donasi extends Model
 {
@@ -38,6 +40,15 @@ class Donasi extends Model
         'description',
         'tanggal_batas_donasi',
         'jumlah_target_dana',
+        'dana_terkumpul',
+        'jumlah_orang'
+        // 'amount',
+        // 'status',
+        // 'midtrans_order_id',
+        // 'midtrans_snap_token',
+        // 'payment_method',
+        // 'email',
+        // 'phone'
     ];
 
     public function User():BelongsTo{
@@ -46,5 +57,17 @@ class Donasi extends Model
 
     public function Category():BelongsTo{
         return $this->belongsTo(Category::class);
+    }
+
+    public function PaymentDonasi():HasMany{
+        return $this->hasMany(Payment::class, 'donasi_id');
+    }
+
+    public function getTotalDonasisAtribute(){
+        return $this->donasis()->where('status', 'success')->sum('amount');
+    }
+
+    public static function generateOrderId(){
+        return 'DN-' . uniqid() . '-' . time();
     }
 }

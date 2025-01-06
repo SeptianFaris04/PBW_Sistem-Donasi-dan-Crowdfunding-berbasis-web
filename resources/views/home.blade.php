@@ -126,13 +126,19 @@
               <div class="card h-100 rounded-4 bg-light border-0">
                   <img src="{{ asset('Storage/' . $donasi->foto) }}" class="card-img-top rounded-4 p-2" alt="{{ $donasi->name }}">
                   <div class="card-body">
-                      <h5 class="card-title text-center fw-bold">{{ $donasi->name }}</h5>
-                      <h6 class="card-description fw-bold">{{ Str::limit($donasi->description, 260) }}</h6>
-                      <p class="text-secondary mb-2">{{ number_format($donasi->jumlah_orang, 0) }} Orang Telah Berdonasi</p>
-                      <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="card-title text-center fw-bold">{{ $donasi->name }}</h5>
+                        <h6 class="card-description fw-bold">{{ Str::limit($donasi->description, 260) }}</h6>
+                        <p class="text-secondary mb-2">{{ number_format($donasi->jumlah_orang, 0) }} Orang Telah Berdonasi</p>
+                         <div class="d-flex justify-content-between align-items-center mb-3">
                           <span class="fw-bold">Rp. {{ number_format($donasi->dana_terkumpul, 2, ',', '.') }}</span>
                           <span class="text-secondary">Target Dana Rp. {{ number_format($donasi->jumlah_target_dana, 2, ',', '.') }}</span>
-                      </div>
+                        </div>
+                        @php
+                            $persentase = ($donasi->dana_terkumpul / $donasi->jumlah_target_dana) * 100;
+                        @endphp
+                        <div class="progress my-3" role="progressbar" aria-label="Animated striped example" aria-valuenow="{{ $persentase }}" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: {{ $persentase }}%"></div>
+                        </div>
                       <button class="btn btn-outline-success w-100 rounded-pill border">Donasi</button>
                   </div>
               </div>

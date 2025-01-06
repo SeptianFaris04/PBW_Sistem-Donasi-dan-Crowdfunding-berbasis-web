@@ -21,13 +21,6 @@
                     <x-nav-link :href="route('urundana.index')" :active="request()->routeIs('urundana.index')">
                         {{ __('Galang Dana') }}
                     </x-nav-link>
-                    @auth
-                    @if (auth()->user()->hasRole('admin'))
-                        <x-nav-link>
-                            {{ __('Management User') }}
-                        </x-nav-link>
-                    @endif
-                    @endauth
                 </div>
             </div>
 
@@ -81,6 +74,11 @@
                         </x-slot>
 
                     </x-dropdown>
+                </div>
+                <div class="hidden sm:flex sm:items-center sm:ms-6">
+                    <x-nav-link :href="route('role-management.index')" :active="request()->routeIs('role-management.index')">
+                        {{ __('Management User') }}
+                    </x-nav-link>
                 </div>
                 <div class="hidden sm:flex sm:items-center sm:ms-6">
                     <x-dropdown width="48">

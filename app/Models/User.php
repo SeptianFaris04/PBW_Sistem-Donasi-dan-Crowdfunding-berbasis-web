@@ -52,6 +52,10 @@ class User extends Authenticatable implements MustVerifyEmail
         ];
     }
 
+    public function Payment():HasMany{
+        return $this->hasMany(Payment::class, 'user_id');
+    }
+
     public function Donasi():HasMany{
         return $this->hasMany(Donasi::class, 'user_id');
     }
@@ -60,11 +64,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(UrunDana::class, 'user_id');
     }
 
-    public function roles():MorphToMany{
-        return $this->morphToMany(Role::class, 'model', 'model_has_roles', 'model_id', 'role_id');
-    }
+    // public function model_has_roles():MorphToMany{
+    //     return $this->morphToMany(Role::class, 'model', 'model_has_roles', 'model_id', 'role_id');
+    // }
 
-    public function permissions():MorphToMany{
-        return $this->morphToMany(Permission::class, 'model', 'model_has_permissions', 'model_id', 'permission_id');
-    }
+    // public function model_has_permissions():MorphToMany{
+    //     return $this->morphToMany(Permission::class, 'model', 'model_has_permissions', 'model_id', 'permission_id');
+    // }
 }

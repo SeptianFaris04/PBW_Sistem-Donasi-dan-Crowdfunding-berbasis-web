@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\UrunDana;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\UrunDanaRequest;
 use Illuminate\Support\Facades\Storage;
 
@@ -79,6 +80,8 @@ class UrunDanaController extends Controller
      */
     public function edit(UrunDana $urundana)
     {
+        Gate::authorize('edit-urundana', $urundana);
+        
         $categories = Category::all();
         $urundana->load(['category', 'user']);
         return view('urundana.edit', [
@@ -113,8 +116,16 @@ class UrunDanaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(UrunDana $urunDana)
+    public function destroy(UrunDana $urundana)
     {
-        //
+        Gate::authorize('hapus-donasi', $urundana);
+
+        if($urundana->foto && Storage::exists($urundana->foto)){
+            Storage::delete($urundana->foto);
+        }
+
+        $urundana->delete();
+
+        return redirect()->route('urundana.index')->with('success', 'Data Donasi berhasil dihapus');
     }
 }

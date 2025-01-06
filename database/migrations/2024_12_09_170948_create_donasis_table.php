@@ -25,8 +25,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug_donasis')->unique();
             $table->text('description');
-            $table->unsignedBigInteger('jumlah_orang')->nullable();
-            $table->unsignedBigInteger('dana_terkumpul')->nullable();
+            $table->unsignedBigInteger('jumlah_orang')->default(0);
+            $table->unsignedBigInteger('dana_terkumpul')->default(0);
             $table->unsignedBigInteger('jumlah_target_dana');
             $table->date('tanggal_batas_donasi');
             $table->timestamps();

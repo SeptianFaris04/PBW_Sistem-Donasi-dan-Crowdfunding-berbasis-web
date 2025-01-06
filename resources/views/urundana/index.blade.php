@@ -19,13 +19,17 @@
             </div>
             <div class="block">
                 @if ($urundana->foto)
-                    <img src="{{ Storage::url($urundana->foto) }}" alt="{{ $urundana->name }}" class="w-full h-48 object-cover rounded-md">
+                    <img src="{{ asset('storage/'. $urundana->foto) }}" alt="{{ $urundana->name }}" class="w-full h-48 object-cover rounded-md">
                 @endif
             </div>
             <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 <a class="hover:underline" href="/urundana/{{ $urundana->slug_urundana }}">{{ $urundana->name }}</a>
             </h2>
             <p class="mb-5 font-light text-gray-500 dark:text-gray-400">{{ Str::limit($urundana->description, 150) }}</p>
+            <div class="flex justify-end text-end mb-4">
+                <a class="bg-primary-500 text-white border rounded-md p-2" href="/payment/donasi/create/{{ $urundana->id }}">Donate {{ $urundana->name }} </a>
+                <a class="bg-primary-500 text-white border rounded-md p-2" href="/donasi/komentar/{{ $urundana->id }}">Lihat Komentar Galang Dana </a>
+            </div>
             <div class="flex justify-between items-center mt-auto">
                 <div class="flex items-center space-x-4">
                     <a class="hover:underline" href="/users/{{ $urundana->user->username }}">
@@ -34,15 +38,25 @@
                 </div>
                 @auth
                     @if ($urundana->user_id === auth()->user()->id)
-                        <a href="{{ Route('urundana.edit', $urundana) }}" class="underline text-blue-600">Edit</a>
+                        <a href="{{ Route('urundana.edit', $urundana) }}" class="bg-primary-800 p-2 border rounded-md text-white hover:underline hover:text-blue-600">Edit</a>
+                        <form action="{{ Route('urundana.destroy', $urundana->id) }}" method="POST" class="inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="bg-red-500 p-2 border rounded-md text-white hover:underline" onclick="return confirm('Apakah Anda yakin ingin menghapus donasi ini?')">
+                                Hapus
+                            </button>
+                        </form>
                     @endif
                 @endauth
-                <a href="/urundana/{{ $urundana->slug_urundana }}" class="inline-flex font-medium text-primary-600 dark:text-primary-500 hover:underline">
-                    Read more &raquo;
-                </a>
             </div>
         </article>        
         @endforeach
+
+        @if (session('success'))
+            <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800">
+                {{ session('success') }}
+            </div>
+        @endif
     
         <style>
             /* ANIMASI */
