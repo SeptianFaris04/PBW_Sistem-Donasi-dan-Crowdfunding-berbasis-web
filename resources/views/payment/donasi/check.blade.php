@@ -26,23 +26,40 @@
                 </x-primary-button>
             </div>
    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="env('MIDTRANS_CLIENT_KEY')"></script>
-    <script type="text/javascript">
-      document.getElementById('pay-button').onclick = function(){
-        // SnapToken acquired from previous step
+   <script type="text/javascript">
+    document.getElementById('pay-button').onclick = function() {
         snap.pay('{{ $snapToken }}', {
-          // Optional
-          onSuccess: function(result){
-            /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-          },
-          // Optional
-          onPending: function(result){
-            /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-          },
-          // Optional
-          onError: function(result){
-            /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-          }
+            onSuccess: function(result) {
+                // Update status pembayaran menjadi success
+                fetch('{{ route("payment.updateStatus") }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({
+                        payment_id: '{{ $payment->id }}',
+                        status: 'success'
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Redirect ke halaman donasi dengan slug dan tampilkan komentar
+                        window.location.href = '{{ route("donasi.show", ["donasi" => $donasi->slug_donasis]) }}';
+                    }
+                });
+            },
+            onPending: function(result) {
+                alert('Pembayaran Anda sedang diproses. Silakan tunggu beberapa saat.');
+                location.reload(); // Muat ulang halaman
+            },
+            onError: function(result) {
+                alert('Terjadi kesalahan dalam proses pembayaran. Silakan coba lagi.');
+                location.reload(); // Muat ulang halaman
+            }
         });
-      };
-    </script>
+        return false;
+    };
+</script>
 </x-app-layout> 

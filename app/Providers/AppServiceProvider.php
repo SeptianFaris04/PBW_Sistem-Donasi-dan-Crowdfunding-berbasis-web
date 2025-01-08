@@ -9,6 +9,7 @@ use App\Models\UrunDana;
 use App\Observers\DonasiObserver;
 use App\Observers\CategoryObserver;
 use App\Observers\UrunDanaObserver;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
@@ -30,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
         Category::observe(CategoryObserver::class);
         Donasi::observe(DonasiObserver::class);
         UrunDana::observe(UrunDanaObserver::class);
+        Paginator::useBootstrap();
         
         Gate::define('edit-donasi', function (User $user, Donasi $donasi) {
             return $user->id === $donasi->user_id;

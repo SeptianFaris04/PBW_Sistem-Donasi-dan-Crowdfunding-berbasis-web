@@ -105,6 +105,18 @@ class PaymentController extends Controller
         return view('payment.donasi.check', compact('donasi', 'payment', 'snapToken'));
     }
 
+    public function updateStatus(Request $request){
+        $payment = Payment::find($request->payment_id);
+
+        if($payment){
+            $payment->status = $request->status;
+            $payment->save();
+
+            return response()->json(['success'=> true]);
+        }
+        return response()->json(['success' => false, 'message' => 'payment not found or miss'], 404);
+    }
+
     
     public function createurundana($id) {
         $urundana = UrunDana::findOrFail($id);

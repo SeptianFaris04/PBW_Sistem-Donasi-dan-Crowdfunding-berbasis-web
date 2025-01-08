@@ -10,9 +10,9 @@ class HomeController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    public function __invoke()
     {
-        $donasis = Donasi::with(['category', 'user'])->latest()->get();
+        $donasis = Donasi::with(['category', 'user'])->latest()->paginate(3);
         return view('home', [
             'donasis' => $donasis
         ]);

@@ -14,6 +14,8 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
 
         <script type="text/javascript"
             src="https://app.sandbox.midtrans.com/snap/snap.js"
@@ -37,6 +39,51 @@
             <main>
                 {{ $slot }}
             </main>
+
+            <!-- Footer Section -->
+            <footer style="background-color: #820000; color: #ffffff; padding: 40px 0;">
+                <div class="container">
+                    <div class="row text-center text-md-start">
+                        <!-- Left Column: Ayo Bantu -->
+                        <div class="col-md-4 mb-4">
+                            <h5 class="fw-bold mb-3">Ayo Bantu</h5>
+                            <p class="mb-4" style="line-height: 1.6;">
+                                Kami telah memiliki Izin Pengumpulan Uang dan Barang untuk Non Bencana di Kementerian Sosial 
+                                Republik Indonesia dengan no surat izin 341/HUK-PS/2023.
+                            </p>
+                            <div class="d-flex justify-content-md-start justify-content-center gap-3">
+                                <a href="https://facebook.com" target="_blank" class="text-light">
+                                    <i class="bi bi-facebook fs-3"></i>
+                                </a>
+                                <a href="https://instagram.com" target="_blank" class="text-light">
+                                    <i class="bi bi-instagram fs-3"></i>
+                                </a>
+                                <a href="https://youtube.com" target="_blank" class="text-light">
+                                    <i class="bi bi-youtube fs-3"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Right Column: Tentang -->
+                        <div class="col-md-4 mb-4 ms-auto text-md-end text-center">
+                            <h5 class="fw-bold mb-3">Tentang</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="/about" class="text-light text-decoration-none">AyoBantu</a></li>
+                                <li><a href="/terms" class="text-light text-decoration-none">Syarat & Ketentuan</a></li>
+                                <li><a href="/contact" class="text-light text-decoration-none">Hubungi Kami</a></li>
+                                <li><a href="/partners" class="text-light text-decoration-none">Partner Kami</a></li>
+                                <li><a href="/faq" class="text-light text-decoration-none">FAQ</a></li>
+                                <li><a href="/blog" class="text-light text-decoration-none">Blog</a></li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                    <div class="text-center mt-4">
+                        <p class="mb-0">&copy; Yayasan Ayo Bantu Peduli Indonesia 2024</p>
+                    </div>
+                </div>
+            </footer>
+
             <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
             {{-- @yield( 'script') --}}

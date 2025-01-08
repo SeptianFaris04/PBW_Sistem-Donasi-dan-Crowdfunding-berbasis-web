@@ -64,6 +64,7 @@ class DonasiController extends Controller
     public function show($slug_donasis)
     {
         $donasi = Donasi::where('slug_donasis', $slug_donasis)->first();
+
         $payment = Payment::where('donasi_id', $donasi->id)->get();
         return view('donasi.show', [
             'donasi' => $donasi,

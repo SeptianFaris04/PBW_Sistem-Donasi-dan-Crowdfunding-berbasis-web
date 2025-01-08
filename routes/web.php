@@ -13,15 +13,10 @@ use App\Http\Controllers\RoleManagementController;
 //     return view('welcome');
 // });
 
-// Route::middleware('guest')->group(function(){
-    Route::get('/', HomeController::class)->name('home');
-    Route::get('/donasi', [DonasiController::class, 'index'])->name('donasi.index');
-    Route::get('/donasi/{donasi:slug_donasis}', [DonasiController::class, 'show'])->name('donasi.show');
-    // Route::get('/donasi/komentar/{donasi}', [PaymentController::class, 'indexdonasi'])->name('donasi.komentar');
-    Route::get('/urundana', [UrunDanaController::class, 'index'])->name('urundana.index');
-    // Route::get('/urundana/komentar/{urundana:slug_urundanas}', [PaymentController::class, 'viewurundana'])->name('payment.viewurundana');
-    Route::get('/merchandise', [MerchandiseController::class, 'index'])->name('merchandise.index');
-// });
+Route::get('/', HomeController::class)->name('home');
+Route::get('/donasi', [DonasiController::class, 'index'])->name('donasi.index');
+Route::get('/urundana', [UrunDanaController::class, 'index'])->name('urundana.index');
+Route::get('/merchandise', [MerchandiseController::class, 'index'])->name('merchandise.index');
 
 Route::middleware(['auth', 'role:user|admin'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -44,6 +39,8 @@ Route::middleware(['auth', 'role:user|admin'])->group(function () {
 
             // Route untuk menampilkan hasil donasi
             Route::get('/payment/donasi/check/{donasi}/{payment}', [PaymentController::class, 'checkdonasi'])->name('payment.donasi.check');
+
+            Route::post('/payment/update-status', [PaymentController::class, 'updateStatus'])->name('payment.updateStatus');
         }
 
         if('permission:buat-pemberian-urundana'){
@@ -101,6 +98,7 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     // Route::get('/donasi/edit/{urundana:slug_urundanas}', [DonasiController::class, 'index'])->name('urundana');
 
     Route::get('/merchandise/create', [MerchandiseController::class, 'create'])->name('merchandise.create');
+    Route::get('/donasi/{donasi:slug_donasis}', [DonasiController::class, 'show'])->name('donasi.show');
 });
 
 
