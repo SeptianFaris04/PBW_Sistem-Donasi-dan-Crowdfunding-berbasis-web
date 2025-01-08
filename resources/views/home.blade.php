@@ -202,7 +202,7 @@
                             <i class="bi bi-heart-fill fs-1"></i>
                         </div>
                         <h5 class="fw-bold">Bantu</h5>
-                        <p>#AyoBantu sesama yang membutuhkan</p>
+                        <p>#goBantu sesama yang membutuhkan</p>
                     </div>
                 </div>
                 <!-- Card 2: Praktis -->
@@ -222,7 +222,7 @@
                             <i class="bi bi-bullseye fs-1"></i>
                         </div>
                         <h5 class="fw-bold">Tepat Sasaran</h5>
-                        <p>Program penggalangan dana di AyoBantu dapat dipertanggungjawabkan kebenarannya</p>
+                        <p>Program penggalangan dana di goBantu dapat dipertanggungjawabkan kebenarannya</p>
                     </div>
                 </div>
                 <!-- Card 4: Transparan -->

@@ -68,7 +68,7 @@
                         <div class="col-md-4 mb-4 ms-auto text-md-end text-center">
                             <h5 class="fw-bold mb-3">Tentang</h5>
                             <ul class="list-unstyled">
-                                <li><a href="/about" class="text-light text-decoration-none">AyoBantu</a></li>
+                                <li><a href="/about" class="text-light text-decoration-none">goBantu</a></li>
                                 <li><a href="/terms" class="text-light text-decoration-none">Syarat & Ketentuan</a></li>
                                 <li><a href="/contact" class="text-light text-decoration-none">Hubungi Kami</a></li>
                                 <li><a href="/partners" class="text-light text-decoration-none">Partner Kami</a></li>
@@ -79,7 +79,7 @@
                         
                     </div>
                     <div class="text-center mt-4">
-                        <p class="mb-0">&copy; Yayasan Ayo Bantu Peduli Indonesia 2024</p>
+                        <p class="mb-0">&copy; Yayasan goBantu Peduli Indonesia 2024</p>
                     </div>
                 </div>
             </footer>

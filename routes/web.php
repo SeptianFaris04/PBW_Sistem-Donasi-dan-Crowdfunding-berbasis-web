@@ -98,8 +98,9 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     // Route::get('/donasi/edit/{urundana:slug_urundanas}', [DonasiController::class, 'index'])->name('urundana');
 
     Route::get('/merchandise/create', [MerchandiseController::class, 'create'])->name('merchandise.create');
-    Route::get('/donasi/{donasi:slug_donasis}', [DonasiController::class, 'show'])->name('donasi.show');
 });
+
+Route::get('/donasi/{donasi:slug_donasis}', [DonasiController::class, 'show'])->name('donasi.show');
 
 
 require __DIR__.'/auth.php';
